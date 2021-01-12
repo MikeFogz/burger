@@ -1,26 +1,38 @@
 <h1>Eat-Da-Burger!</h1>
 
-<ul id="displayBurger">
-    {{#each burgers}}
-    {{burger_name}}
-    {{/each}}
-</ul>
-
-{{!-- devoured burgers list --}}
-<ul>
-    {{#each burgers}}
-    {{/each}}
-
-    <button class="devouredId" id="burger_id">Eat-Da-Burger!</button>
-</ul>
-
-<h2>Order DA Burger</h2>
-<form id="create-form">
-
-    <div class="form-group">
-        <label for="burger">What Burger do you want to eat?</label>
-        <input type="text" id="burgerInput" name="name">
+<div class="row">
+    <div class="col-md-6">
+        <ul>
+            {{#each burgers}}
+            {{#unless devoured}}
+            <li class="burger-li pb-2">
+                {{burger_name}}
+                <button class="btn btn-primary bugerBtn" burger-id="{{id}}" type="button">Devour it!</button>
+            </li>
+            {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <ul>
+            {{#each burgers}}
+            {{#if devoured}}
+            <li class="burger-li pb-2">
+                {{burger_name}}
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
     </div>
 
-    <button type="submit">Order DA Burger!</button>
-</form>
+
+    <h2>Order DA Burger</h2>
+    <form id="create-form">
+
+        <div class="form-group">
+            <label for="burger">What Burger do you want to eat?</label>
+            <input type="text" id="burgerInput" name="name">
+        </div>
+
+        <button type="submit">Order DA Burger!</button>
+    </form>
