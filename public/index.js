@@ -1,23 +1,18 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
-document.addEventListener('DOMContentLoaded', (event) => {
-    if (event) {
-      console.info('DOM loaded');
-    }
-  
+const burger = require("../models/burger");
+
     // UPDATE
-    const devouredBtns = document.querySelectorAll('.change-sleep');
+    const devourBurger = document.querySelectorAll('.devouredId');
   
-    // Set up the event listener for the create button
-    if (changeSleepBtns) {
-      changeSleepBtns.forEach((button) => {
-        button.addEventListener('click', (e) => {
-          console.log('test');
+    if (devourBurger) {
+      devourBurger.forEach((element) => {
+        element.addEventListener('click', (e) => {
+          console.log('devour clicked');
           // Grabs the id of the element that goes by the name, "id"
-          const id = e.target.getAttribute('data-id');
-          const newSleep = e.target.getAttribute('data-newsleep');
+          // const id = e.target.getAttribute('data-id');
+          const justDevoured = e.target.getAttribute('data-justdevoured');
   
-          const newSleepState = {
-            sleepy: newSleep,
+          const burgerStatus = {
+            devoured: justDevoured,
           };
   
           fetch(`/api/burgers/${id}`, {
@@ -28,12 +23,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             },
   
             // make sure to serialize the JSON body
-            body: JSON.stringify(newSleepState),
+            body: JSON.stringify(burgerStatus),
           }).then((response) => {
             // Check that the response is all good
             // Reload the page so the user can see the new quote
             if (response.ok) {
-              console.log(`changed sleep to: ${newSleep}`);
+              console.log(`changed sleep to: ${justDevoured}`);
               location.reload('/');
             } else {
               alert('something went wrong!');
@@ -44,16 +39,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   
     // CREATE
-    const createBurgerBtn = document.getElementById('create-form');
-  
-    if (createCatBtn) {
-      createCatBtn.addEventListener('submit', (e) => {
+    const createBurgerBtn = document.querySelector('#createBurgerBtn');
+    const burgerInput = document.querySelector('#burgerInput');
+
+    if (createBurgerBtn) {
+      createBurgerBtn.addEventListener('click', (e) => {
         e.preventDefault();
   
         // Grabs the value of the textarea that goes by the name, "quote"
-        const newCat = {
-          name: document.getElementById('ca').value.trim(),
-          sleepy: document.getElementById('sleepy').checked,
+        const newBurger = {
+          burger_name: burger.Input.value.trim(),
         };
   
         // Send POST request to create a new quote
@@ -65,14 +60,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
           },
   
           // make sure to serialize the JSON body
-          body: JSON.stringify(newCat),
+          body: JSON.stringify(newBurger),
         }).then(() => {
           // Empty the form
-          document.getElementById('ca').value = '';
+          document.getElementById('burgerInput').value = '';
   
           // Reload the page so the user can see the new quote
-          console.log('Created a new cat!');
-          location.reload();
+          console.log('Created a new burger to be devoured!');
+          // location.reload();
         });
       });
     }
