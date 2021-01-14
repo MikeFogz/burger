@@ -10,8 +10,21 @@ const orm = {
             }
             burgerCallback(result);
         });
+    },
+
+    insertOne(table, vals, burgerCallback) {
+    let queryString = `INSERT INTO ${table} (burger_name) VALUES (?)`;
+
+    console.log(queryString);
+
+    connection.query(queryString, vals, (err, result) => {
+    if (err) {
+        throw err;
     }
-    // insertOne()
+    burgerCallback(result);
+    });
+},
+
     // updateOne()
 
 };
