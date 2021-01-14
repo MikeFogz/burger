@@ -25,7 +25,24 @@ const orm = {
     });
 },
 
-    // updateOne()
+    updateOne(table, objColVals, condition, burgerCallback) {
+        let queryString = `UPDATE ${table}`;
+    
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+        console.log(queryString);
+    
+        connection.query(queryString, (err, result) => {
+        if (err) {
+            throw err;
+        }
+    
+        burgerCallback(result);
+        });
+    },
+
 
 };
 
