@@ -28,7 +28,7 @@ const burger = require("../models/burger");
             // Check that the response is all good
             // Reload the page so the user can see the new quote
             if (response.ok) {
-              console.log(`changed sleep to: ${justDevoured}`);
+              console.log(`changed devoured to: ${justDevoured}`);
               location.reload('/');
             } else {
               alert('something went wrong!');
