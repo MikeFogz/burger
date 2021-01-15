@@ -1,4 +1,4 @@
-const burger = require("../models/burger");
+// const burger = require("../models/burger.js");
 
     // UPDATE
     const devourBurger = document.querySelectorAll('.devouredId');
@@ -8,13 +8,13 @@ const burger = require("../models/burger");
         element.addEventListener('click', (e) => {
           console.log('devour clicked');
           // Grabs the id of the element that goes by the name, "id"
-          // const id = e.target.getAttribute('data-id');
-          const justDevoured = e.target.getAttribute('data-justdevoured');
+          const id = e.currentTarget.getAttribute('burger-id');
+          const justDevoured = e.currentTarget.getAttribute('devouredId');
   
           const burgerStatus = {
             devoured: justDevoured,
           };
-  
+          
           fetch(`/api/burgers/${id}`, {
             method: 'PUT',
             headers: {
@@ -48,7 +48,7 @@ const burger = require("../models/burger");
   
         // Grabs the value of the textarea that goes by the name, "quote"
         const newBurger = {
-          burger_name: burger.Input.value.trim(),
+          burger_name: burgerInput.value.trim(),
         };
   
         // Send POST request to create a new quote
@@ -67,7 +67,7 @@ const burger = require("../models/burger");
   
           // Reload the page so the user can see the new quote
           console.log('Created a new burger to be devoured!');
-          // location.reload();
+          location.reload();
         });
       });
     }

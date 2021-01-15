@@ -1,5 +1,18 @@
 // Import MySQL connection.
 const connection = require('./connection.js');
+const objToSql = (ob) => {
+    const arr = [];
+    for (const key in ob) {
+    let value = ob[key];
+    if (Object.hasOwnProperty.call(ob, key)) {
+        if (typeof value === 'string' && value.indexOf(' ') >= 0) {
+        value = `'${value}'`;
+        }
+        arr.push(`${key}=${value}`);
+    }
+    }
+    return arr.toString();
+};
 
 const orm = {
     selectAll(tableInput,burgerCallback){
@@ -13,11 +26,11 @@ const orm = {
     },
 
     insertOne(table, vals, burgerCallback) {
-    let queryString = `INSERT INTO ${table} (burger_name) VALUES (?)`;
+    let queryString = `INSERT INTO ${table} (burger_name) VALUES  ("${vals}")`;
 
     console.log(queryString);
 
-    connection.query(queryString, vals, (err, result) => {
+    connection.query(queryString, (err, result) => {
     if (err) {
         throw err;
     }
