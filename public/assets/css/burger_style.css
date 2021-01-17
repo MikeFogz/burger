@@ -1,7 +1,22 @@
 .header {
-  padding: 60px;
+  padding: 30px;
   text-align: center;
-  background: #1abc9c;
+  background: #d53349;
   color: white;
   font-size: 30px;
+}
+
+.order {
+  padding: 60px;
+  text-align: center;
+  background: #ffe285;
+}
+
+ul {
+  text-align: center;
+  list-style: inside;
+}
+
+.font {
+  font-family: "Luckiest Guy", serif;
 }
