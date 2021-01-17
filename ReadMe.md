@@ -29,8 +29,6 @@ When on the localhost page click get started and you may begin writing notes.
 
 [Deployed Heroku App](https://mikefogz-notetaker.herokuapp.com/)
 
-![Gif walkthru of deployed app](./Assets/NoteTaker.gif)
-
 ## Contributing
 
 This project is open to collaboration.
