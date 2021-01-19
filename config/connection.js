@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const connection;
-if (process.env.mysql://sxmjeu759ppheymg:mgsx269m8rlamf64@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qaom54pcaubtuov7) {
-  connection = mysql.createConnection(process.env.mysql://sxmjeu759ppheymg:mgsx269m8rlamf64@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qaom54pcaubtuov7);
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
   connection = mysql.createConnection({
     host: 'localhost',
@@ -11,7 +11,7 @@ if (process.env.mysql://sxmjeu759ppheymg:mgsx269m8rlamf64@td5l74lo6615qq42.cbetx
     password: 'password',
     database: 'burgers_db',
   });
-}
+};
 
   
 
